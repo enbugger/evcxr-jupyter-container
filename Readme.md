@@ -1,19 +1,17 @@
-# docker-evcxr-jupyter
+# evcxr-jupyter-container
 
-A containerized version of the [Evcxr](https://github.com/google/evcxr), an evaluation context/REPL for Rust as a Jupyter kernel.
+A containerized version of the [Evcxr](https://github.com/evcxr/evcxr), an evaluation context/REPL for Rust as a Jupyter kernel.
 
 ## Usage
-Just pull the docker image from the Docker hub:
 
-`docker run --rm -p 8888:8888 cheperuiz/evcxr`
+1. Build it yourself by cloning this repo:
+    ```sh
+    git clone  https://github.com/cheperuiz/docker-evcxr
+    cd docker-evcxr
+    podman build -t evcrx_jupyter
+    podman run -w /scripts -v ./notebooks:/notebooks -p 8888:8888 -u 1000:1000 localhost/evcrx_jupyter
+    ```
+2. Go to `http://localhost:8888`
+3. Check blocks in `evcrx-test.ipynb` to ensure kernel is running correctly.
 
-And go to `http://localhost:8888`
-
-Or build it yourself by cloning this repo:
-```
-git clone  https://github.com/cheperuiz/docker-evcxr
-cd docker-evcxr
-docker-compose up --build
-```
-
-
+Edited files are mapped from `/notebooks`
